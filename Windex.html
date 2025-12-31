@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Wish For You</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: #0f0c29; /* Fallback */
+            background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+
+        /* Romantic Background Animation */
+        .bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,105,180,0.4) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: moveGlow 10s infinite alternate;
+        }
+
+        .glow:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            background: radial-gradient(circle, rgba(138,43,226,0.4) 0%, rgba(0,0,0,0) 70%);
+            animation-duration: 15s;
+        }
+
+        @keyframes moveGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.2); }
+        }
+
+        /* Initial Entry Screen */
+        #intro-screen {
+            position: absolute;
+            z-index: 10;
+            text-align: center;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        .heart-icon {
+            font-size: 80px;
+            color: #ff4d6d;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px #ff4d6d);
+        }
+
+        .start-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .start-btn:hover {
+            background: #ff4d6d;
+            box-shadow: 0 0 30px #ff4d6d;
+            transform: scale(1.05);
+        }
+
+        /* Main Content Card */
+        #main-content {
+            position: relative;
+            z-index: 5;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 450px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            display: none; /* Hidden initially */
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #ff4d6d;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
+        }
+
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-elements">
+        <div class="glow" style="top: -10%; left: -10%;"></div>
+        <div class="glow" style="bottom: -10%; right: -10%;"></div>
+        <div class="glow" style="top: 40%; left: 40%; width: 200px; height: 200px; background: rgba(0,255,255,0.2);"></div>
+    </div>
+
+    <div id="intro-screen">
+        <div class="heart-icon">💖</div>
+        <button class="start-btn" onclick="startExperience()">Tap to Open</button>
+    </div>
+
+    <div id="main-content">
+        <h1>Happy New Year!</h1>
+        <p class="message">
+            साल बदल रहा है, तारीखें बदल रही हैं...<br>
+            पर एक दुआ है कि 
+            <span class="highlight">तुम्हारी वो प्यारी सी हंसी</span> 
+            कभी ना बदले।<br><br>
+            आने वाला साल तुम्हारे लिए उतनी ही खुशियां लाए, 
+            जितनी खुशी मुझे तुमसे बात करके मिलती है।
+            <br><br>
+            Stay sweet, stay magical. ✨
+        </p>
+        
+        <div class="footer">
+            Made with ❤️ by <span style="color: #fff; font-weight: bold;">[Rudra]</span>
+        </div>
+    </div>
+
+    <script>
+        function startExperience() {
+            const intro = document.getElementById('intro-screen');
+            const main = document.getElementById('main-content');
+            
+            // Fade out intro
+            intro.classList.add('hidden');
+            
+            setTimeout(() => {
+                intro.style.display = 'none';
+                main.style.display = 'block';
+                
+                // Trigger animation frame for CSS transition
+                requestAnimationFrame(() => {
+                    main.style.opacity = '1';
+                    main.style.transform = 'scale(1)';
+                });
+                
+                // Launch Confetti
+                createConfetti();
+            }, 500);
+        }
+
+        function createConfetti() {
+            const colors = ['#ff4d6d', '#ff9a9e', '#a18cd1', '#fbc2eb', '#8fd3f4'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
